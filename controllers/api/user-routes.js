@@ -86,14 +86,14 @@ router.post('/login', (req, res) => {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
         }
-  
+
         const validPassword = dbUserData.checkPassword(req.body.password);
-  
+
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
             return;
         }
-  
+
         req.session.save(() => {
             // declare session variables
             req.session.user_id = dbUserData.id;
